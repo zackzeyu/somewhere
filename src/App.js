@@ -1,34 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { Grommet, Box, Clock } from 'grommet';
+import { Grommet, Box, Clock, Layer } from 'grommet';
 import splash from './assets/splash.jpg';
 import Greeting from './components/Greeting';
 import SearchBar from './components/SearchBar';
 import MapContainer from './components/MapContainer';
-
-const theme = {
-	global: {
-		font: {
-			family: 'Quicksand',
-			size: '14px',
-			height: '20px'
-		},
-		backgroundRepeat: 'no-repeat',
-		colors: {
-			brand: 'rgba(185, 163, 148, 1)',
-			focus: '#D4C5C7',
-			'neutral-1': '#586A6A'
-		},
-		input: {
-			weight: 400
-		},
-		control: {
-			border: {
-				width: '1px'
-			}
-		}
-	}
-};
+import theme from './theme';
 
 function App() {
 	const mainBoxStyle = {
@@ -41,6 +18,7 @@ function App() {
 		borderRadius: '5px',
 		textAlign: 'center'
 	};
+	const [ showModal, setShowModal ] = useState(false);
 
 	return (
 		<Grommet theme={theme}>
@@ -58,10 +36,14 @@ function App() {
 				}}
 			>
 				<Box style={mainBoxStyle}>
-					it is now... <Clock alignSelf="center" hourLimit="12" precision="minutes" type="digital" />
+					it is now... <Clock alignSelf="center" precision="minutes" type="digital" />
 					<Greeting />
-					<SearchBar />
-					<MapContainer />
+					<SearchBar setShowModal={setShowModal} />
+					{showModal && (
+						<Layer onEsc={() => setShowModal(false)} onClickOutside={() => setShowModal(false)}>
+							<MapContainer />
+						</Layer>
+					)}
 				</Box>
 			</Box>
 		</Grommet>
