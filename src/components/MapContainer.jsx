@@ -13,7 +13,7 @@ export default function MapContainer() {
 		paddingTop: 40,
 		paddingBottom: 40,
 		textAlign: 'center',
-		backgroundColor: 'rgba(255, 255, 255, 0.9)',
+		backgroundColor: 'rgba(238, 241, 236, 0.9)',
 		borderRadius: 10
 	};
 	const mapStyle = { height: '100%', width: '50%', minWidth: '400px' };

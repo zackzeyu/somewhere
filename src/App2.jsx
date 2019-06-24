@@ -16,13 +16,11 @@ import theme from './theme';
 export default function App2() {
 	const mainBoxStyle = {
 		zIndex: 100,
-		// width: '90%',
 		height: '300px',
 		paddingLeft: 50,
 		paddingRight: 50,
 		paddingTop: 50,
 		paddingBottom: 0,
-		// backgroundColor: 'rgba(255, 255, 255, 0.9)',
 		borderRadius: '5px',
 		textAlign: 'center'
 	};
@@ -86,21 +84,6 @@ export default function App2() {
 					)}
 				</ParallaxBanner>
 			</Box>
-			{/* <Box
-				direction="column"
-				justify="center"
-				align="center"
-				margin={{
-					top: '0'
-				}}
-				background={{
-					color: 'rgba(11, 22, 37, 1)'
-				}}
-				style={{
-					zIndex: 100
-				}}
-				height="100px"
-			/> */}
 		</Grommet>
 	);
 }

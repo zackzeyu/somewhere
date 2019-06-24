@@ -5,21 +5,16 @@ import { geocodeByPlaceId, getLatLng } from 'react-places-autocomplete';
 import { MapLocation } from 'grommet-icons';
 
 export default function SearchBar({ setShowMap }) {
-	const options = [
-		'snowing',
-		'freezing',
-		'cold',
-		'cool',
-		'temperate',
-		'warm',
-		'with sunshine',
-		'hot',
-		'very toasty'
-	];
+	const tempOptions = [ 'freezing', 'cold', 'cool', 'warm', 'hot', 'toasty' ];
+	const weatherOptions = [ 'snowy', 'rainy', 'sunny' ];
 
-	const [ tempChoice, setTempChoice ] = useState('with sunshine');
+	const [ tempChoice, setTempChoice ] = useState('warm');
+	const [ weatherChoice, setWeatherChoice ] = useState('sunny');
 	const handleTempChoiceChange = (option) => {
 		setTempChoice(option.value);
+	};
+	const handleWeatherChoiceChange = (option) => {
+		setWeatherChoice(option.value);
 	};
 
 	const [ locationId, setLocationId ] = useState('');
@@ -27,22 +22,23 @@ export default function SearchBar({ setShowMap }) {
 	const handleSearchClick = () => {
 		const url = `http://localhost:5005/search`;
 		setShowMap(true);
-		// geocodeByPlaceId(locationId)
-		// 	.then((results) => getLatLng(results[0]))
-		// 	.then((latLng) => {
-		// 		console.log('Success', latLng);
-		// 		return fetch(url, {
-		// 			method: 'post',
-		// 			headers: {
-		// 				'Content-Type': 'application/json'
-		// 			},
-		// 			body: JSON.stringify({
-		// 				tempChoice,
-		// 				location: latLng
-		// 			})
-		// 		});
-		// 	})
-		// 	.catch((error) => console.error('Error', error));
+		geocodeByPlaceId(locationId)
+			.then((results) => getLatLng(results[0]))
+			.then((latLng) => {
+				const body = JSON.stringify({
+					tempChoice,
+					weatherChoice,
+					location: latLng
+				});
+				return fetch(url, {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body
+				});
+			})
+			.catch((error) => console.error('Error', error));
 	};
 
 	return (
@@ -60,11 +56,36 @@ export default function SearchBar({ setShowMap }) {
 			</Box>
 			<Box>
 				<Select
+					style={{
+						width: 90
+					}}
 					plain={true}
 					size="large"
-					options={options}
+					options={tempOptions}
 					value={tempChoice}
 					onChange={handleTempChoiceChange}
+					icon={false}
+				/>
+			</Box>
+			<Text
+				size="large"
+				margin={{
+					left: 'xsmall',
+					right: 'xsmall'
+				}}
+			>
+				and
+			</Text>
+			<Box>
+				<Select
+					style={{
+						width: 100
+					}}
+					plain={true}
+					size="large"
+					options={weatherOptions}
+					value={weatherChoice}
+					onChange={handleWeatherChoiceChange}
 					icon={false}
 				/>
 			</Box>
@@ -81,8 +102,6 @@ export default function SearchBar({ setShowMap }) {
 			</Box>
 			<Box>
 				<SearchInput setLocationId={setLocationId} />
-				{/* <Geosuggest queryDelay="1000" /> */}
-				{/* <TextInput size="large" placeholder="type here" value={location} onChange={handleLocationChange} /> */}
 			</Box>
 			<Box
 				margin={{
