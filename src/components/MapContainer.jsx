@@ -5,15 +5,18 @@ import { Gremlin } from 'grommet-icons';
 
 export default function MapContainer() {
 	const modalBoxStyle = {
-		height: '80vh',
-		width: '80vw',
+		height: '600px',
+		width: '90vw',
+		margin: 'auto',
 		paddingLeft: 50,
 		paddingRight: 50,
 		paddingTop: 40,
 		paddingBottom: 40,
-		textAlign: 'center'
+		textAlign: 'center',
+		backgroundColor: 'rgba(255, 255, 255, 0.9)',
+		borderRadius: 10
 	};
-	const mapStyle = { height: '100%', width: '50%' };
+	const mapStyle = { height: '100%', width: '50%', minWidth: '400px' };
 	const center = {
 		lat: 59.95,
 		lng: 30.33
@@ -21,7 +24,7 @@ export default function MapContainer() {
 	const zoom = 11;
 
 	return (
-		<Box style={modalBoxStyle}>
+		<Box style={modalBoxStyle} justify="center" align="center" direction="row" wrap={true}>
 			<Box style={mapStyle}>
 				<GoogleMapReact
 					bootstrapURLKeys={{ key: 'AIzaSyDEcPtDlTvV7hKd3qemc4dDm87QlI1GjWE' }}
@@ -33,6 +36,7 @@ export default function MapContainer() {
 					</Box>
 				</GoogleMapReact>
 			</Box>
+			<Box style={mapStyle}>List of stuff here</Box>
 		</Box>
 	);
 }

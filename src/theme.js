@@ -7,8 +7,8 @@ const theme = {
 		},
 		backgroundRepeat: 'no-repeat',
 		colors: {
-			brand: 'rgba(185, 163, 148, 1)',
-			focus: '#D4C5C7',
+			brand: 'rgba(11, 22, 37, 1)',
+			focus: '#586A6A',
 			'neutral-1': '#586A6A'
 		},
 		input: {

@@ -4,7 +4,7 @@ import SearchInput from './SearchInput';
 import { geocodeByPlaceId, getLatLng } from 'react-places-autocomplete';
 import { MapLocation } from 'grommet-icons';
 
-export default function SearchBar({ setShowModal }) {
+export default function SearchBar({ setShowMap }) {
 	const options = [
 		'snowing',
 		'freezing',
@@ -26,7 +26,7 @@ export default function SearchBar({ setShowModal }) {
 
 	const handleSearchClick = () => {
 		const url = `http://localhost:5005/search`;
-		setShowModal(true);
+		setShowMap(true);
 		// geocodeByPlaceId(locationId)
 		// 	.then((results) => getLatLng(results[0]))
 		// 	.then((latLng) => {
@@ -46,7 +46,7 @@ export default function SearchBar({ setShowModal }) {
 	};
 
 	return (
-		<Box direction="row" justify="center" align="center" wrap={true}>
+		<Box direction="row" justify="center" align="center" wrap={true} style={{ zIndex: 100 }}>
 			<Box>
 				<Text
 					size="large"
@@ -89,7 +89,14 @@ export default function SearchBar({ setShowModal }) {
 					left: 'medium'
 				}}
 			>
-				<Button color="neutral-1" primary icon={<MapLocation />} label="Go" onClick={handleSearchClick} />
+				<Button
+					color="neutral-1"
+					primary
+					icon={<MapLocation />}
+					label="Go"
+					onClick={handleSearchClick}
+					style={{ zIndex: 100 }}
+				/>
 			</Box>
 		</Box>
 	);
