@@ -3,13 +3,20 @@ import { Box, Text, Select, Button } from 'grommet';
 import SearchInput from './SearchInput';
 import { geocodeByPlaceId, getLatLng } from 'react-places-autocomplete';
 import { MapLocation } from 'grommet-icons';
+import { FlapperSpinner } from 'react-spinners-kit';
 
-export default function SearchBar({ setShowMap }) {
+export default function SearchBar({
+	setShowMap,
+	setMapCenter,
+	tempChoice,
+	setTempChoice,
+	weatherChoice,
+	setWeatherChoice,
+	setResultLocations
+}) {
 	const tempOptions = [ 'freezing', 'cold', 'cool', 'warm', 'hot', 'toasty' ];
 	const weatherOptions = [ 'snowy', 'rainy', 'sunny' ];
 
-	const [ tempChoice, setTempChoice ] = useState('warm');
-	const [ weatherChoice, setWeatherChoice ] = useState('sunny');
 	const handleTempChoiceChange = (option) => {
 		setTempChoice(option.value);
 	};
@@ -18,13 +25,17 @@ export default function SearchBar({ setShowMap }) {
 	};
 
 	const [ locationId, setLocationId ] = useState('');
+	const [ loading, setLoading ] = useState(false);
 
 	const handleSearchClick = () => {
 		const url = `http://localhost:5005/search`;
-		setShowMap(true);
+		setShowMap(false);
+
+		setLoading(true);
 		geocodeByPlaceId(locationId)
 			.then((results) => getLatLng(results[0]))
 			.then((latLng) => {
+				setMapCenter(latLng);
 				const body = JSON.stringify({
 					tempChoice,
 					weatherChoice,
@@ -38,7 +49,18 @@ export default function SearchBar({ setShowMap }) {
 					body
 				});
 			})
-			.catch((error) => console.error('Error', error));
+			.then((result) => result.json())
+			.then((result) => {
+				setLoading(false);
+				setResultLocations(result);
+				setShowMap(true);
+				return true;
+			})
+			.catch((error) => {
+				setLoading(false);
+				alert('Something went wrong! D:');
+				console.error('Error', error);
+			});
 	};
 
 	return (
@@ -105,7 +127,8 @@ export default function SearchBar({ setShowMap }) {
 			</Box>
 			<Box
 				margin={{
-					left: 'medium'
+					left: 'medium',
+					right: 'medium'
 				}}
 			>
 				<Button
@@ -117,6 +140,7 @@ export default function SearchBar({ setShowMap }) {
 					style={{ zIndex: 100 }}
 				/>
 			</Box>
+			{loading && <FlapperSpinner color="rgba(19, 69, 57, 1)" />}
 		</Box>
 	);
 }

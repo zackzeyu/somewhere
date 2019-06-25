@@ -11,8 +11,8 @@ const tempOptions = {
 
 const checkClimate = (forecast, searchTemp, searchWeather) => {
 	if (
-		forecast.temperatureHigh >= tempOptions[searchTemp].min ||
-		forecast.temperatureLow <= tempOptions[searchTemp].max
+		forecast.temperatureHigh < tempOptions[searchTemp].max &&
+		forecast.temperatureHigh >= tempOptions[searchTemp].min
 	) {
 		if (searchWeather === 'snowy' && forecast.precipType === 'snow' && forecast.precipProbability > 0.3) {
 			return true;
@@ -37,8 +37,8 @@ const getNearbyCities = async (req, res) => {
 
 		const nearbyUrl = `http://api.geonames.org/findNearbyPlaceNameJSON?lat=${location.lat}&lng=${location.lng}&style=${returnDetails}&cities=${citySize}&radius=${radius}&maxRows=${maxRows}&username=${username}`;
 		let results = await axios.get(nearbyUrl);
-		results = [ results.data.geonames[0], results.data.geonames[1] ];
-		// console.log('Output: getNearbyCities -> results', results);
+		results = results.data.geonames;
+		// results = [ results.data.geonames[0], results.data.geonames[1] ];
 
 		const forecastPromises = results.map((result) => {
 			const lng = result.lng;

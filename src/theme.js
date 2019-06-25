@@ -7,8 +7,8 @@ const theme = {
 		},
 		backgroundRepeat: 'no-repeat',
 		colors: {
-			brand: 'rgba(11, 22, 37, 1)',
-			focus: '#586A6A',
+			brand: 'rgba(11, 22, 37, 1)', // Dark forest green almost black
+			focus: '#586A6A', // grey-ish green
 			'neutral-1': '#586A6A'
 		},
 		input: {
@@ -52,6 +52,9 @@ const theme = {
 	},
 	layer: {
 		background: 'rgba(255, 255, 255, 0.8)'
+	},
+	accordion: {
+		border: { color: 'none' }
 	}
 };
 
