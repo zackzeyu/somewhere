@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import PlacesAutocomplete, { geocodeByPlaceId, getLatLng } from 'react-places-autocomplete';
+import PlacesAutocomplete from 'react-places-autocomplete';
 import { TextInput } from 'grommet';
 
 export default function SearchInput({ setLocationId }) {
@@ -11,7 +11,6 @@ export default function SearchInput({ setLocationId }) {
 	};
 
 	const handleSelect = (event) => {
-		// console.log('Output: handleSelect -> location', event);
 		setSearchLocation(event.suggestion.label);
 		setLocationId(event.suggestion.value);
 	};

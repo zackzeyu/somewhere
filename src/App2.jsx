@@ -13,6 +13,7 @@ import SearchBar from './components/SearchBar';
 import MapContainer from './components/MapContainer';
 import theme from './theme';
 import dummyData from './assets/dummyData';
+import Logo from './components/Logo';
 
 export default function App2() {
 	const mainBoxStyle = {
@@ -76,6 +77,7 @@ export default function App2() {
 						backgroundColor: 'rgba(238, 241, 236, 1)'
 					}}
 				>
+					<Logo />
 					<Box direction="column" justify="center" align="center" height="50vh">
 						<Box style={mainBoxStyle}>
 							<Text alignSelf="center">it is now... </Text>

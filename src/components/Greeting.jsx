@@ -28,10 +28,13 @@ export default function Greeting() {
 				delay: 700,
 				duration: 2000
 			}}
+			pad="small"
 			margin="small"
 			alignSelf="center"
 		>
-			<Heading color="neutral-1">{message}, beautiful</Heading>
+			<Box>
+				<Heading color="neutral-1">{message}</Heading>
+			</Box>
 		</Box>
 	);
 }
