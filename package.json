@@ -15,8 +15,10 @@
     "react-places-autocomplete": "^7.2.1",
     "react-scripts": "3.0.1",
     "react-scroll-parallax": "^2.1.2",
+    "react-spinners-kit": "^1.9.0",
     "react-spring": "^8.0.25",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "weather-icons-react": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

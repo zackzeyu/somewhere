@@ -12,11 +12,13 @@ import Greeting from './components/Greeting';
 import SearchBar from './components/SearchBar';
 import MapContainer from './components/MapContainer';
 import theme from './theme';
+import dummyData from './assets/dummyData';
 
 export default function App2() {
 	const mainBoxStyle = {
 		zIndex: 100,
 		height: '300px',
+		width: '100%',
 		paddingLeft: 50,
 		paddingRight: 50,
 		paddingTop: 50,
@@ -24,7 +26,17 @@ export default function App2() {
 		borderRadius: '5px',
 		textAlign: 'center'
 	};
-	const [ showMap, setShowMap ] = useState(false);
+	const [ showMap, setShowMap ] = useState(true);
+
+	// Set default map center to NYC
+	const [ mapCenter, setMapCenter ] = useState({
+		lat: 40.71427,
+		lng: -74.00597
+	});
+	const [ tempChoice, setTempChoice ] = useState('warm');
+	const [ weatherChoice, setWeatherChoice ] = useState('sunny');
+	const [ resultLocations, setResultLocations ] = useState(dummyData);
+
 	return (
 		<Grommet theme={theme}>
 			<Box>
@@ -69,7 +81,15 @@ export default function App2() {
 							<Text alignSelf="center">it is now... </Text>
 							<Clock alignSelf="center" precision="minutes" type="digital" />
 							<Greeting />
-							<SearchBar setShowMap={setShowMap} />
+							<SearchBar
+								setShowMap={setShowMap}
+								setMapCenter={setMapCenter}
+								tempChoice={tempChoice}
+								setTempChoice={setTempChoice}
+								weatherChoice={weatherChoice}
+								setWeatherChoice={setWeatherChoice}
+								setResultLocations={setResultLocations}
+							/>
 						</Box>
 					</Box>
 					{showMap && (
@@ -79,7 +99,7 @@ export default function App2() {
 								duration: 1000
 							}}
 						>
-							<MapContainer />
+							<MapContainer mapCenter={mapCenter} resultLocations={resultLocations} />
 						</Box>
 					)}
 				</ParallaxBanner>
