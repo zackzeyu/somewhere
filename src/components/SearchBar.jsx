@@ -28,7 +28,12 @@ export default function SearchBar({
 	const [ loading, setLoading ] = useState(false);
 
 	const handleSearchClick = () => {
-		const url = `http://localhost:5005/search`;
+		let url;
+		if (window.location.hostname !== 'localhost') {
+			url = `http://${window.location.hostname}/search`;
+		} else {
+			url = 'http://localhost:5005/search';
+		}
 		setShowMap(false);
 
 		setLoading(true);
