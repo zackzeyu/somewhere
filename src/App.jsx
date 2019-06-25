@@ -12,7 +12,7 @@ import Greeting from './components/Greeting';
 import SearchBar from './components/SearchBar';
 import MapContainer from './components/MapContainer';
 import theme from './theme';
-import dummyData from './assets/dummyData';
+// import dummyData from './assets/dummyData';
 import Logo from './components/Logo';
 
 export default function App2() {
@@ -27,7 +27,7 @@ export default function App2() {
 		borderRadius: '5px',
 		textAlign: 'center'
 	};
-	const [ showMap, setShowMap ] = useState(true);
+	const [ showMap, setShowMap ] = useState(false);
 
 	// Set default map center to NYC
 	const [ mapCenter, setMapCenter ] = useState({
@@ -36,7 +36,7 @@ export default function App2() {
 	});
 	const [ tempChoice, setTempChoice ] = useState('warm');
 	const [ weatherChoice, setWeatherChoice ] = useState('sunny');
-	const [ resultLocations, setResultLocations ] = useState(dummyData);
+	const [ resultLocations, setResultLocations ] = useState([]);
 
 	return (
 		<Grommet theme={theme}>

@@ -18,7 +18,7 @@ export default function SearchInput({ setLocationId }) {
 	// ? Idea: Clean this up, too many HOC's
 	return (
 		<PlacesAutocomplete
-			debounce={2000}
+			debounce={1000}
 			shouldFetchSuggestions={searchLocation.length > 2}
 			value={searchLocation}
 			onChange={handleChange}

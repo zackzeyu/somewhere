@@ -1,5 +1,12 @@
 const axios = require('axios');
-const API = require('./api');
+let API;
+try {
+	API = require('./api');
+} catch (err) {
+	API = {
+		DARKSKY: process.env.DARKSKY || ''
+	};
+}
 const tempOptions = {
 	freezing: { min: -100, max: 32 },
 	cold: { min: -32, max: 40 },
