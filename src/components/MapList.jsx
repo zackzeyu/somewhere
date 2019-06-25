@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Accordion, AccordionPanel, Text, Anchor } from 'grommet';
 
-export default function MapList({ resultLocations, activeIndex }) {
-	const panels = resultLocations.map((location) => {
+export default function MapList({ resultLocations, activeIndex, setActiveIndex }) {
+	const panels = resultLocations.map((location, locationIndex) => {
 		const wikiLink = location.location.alternateNames.filter((name) => name.lang === 'link');
 
 		return (
@@ -10,6 +10,9 @@ export default function MapList({ resultLocations, activeIndex }) {
 				key={location.location.geonameId}
 				id={location.location.geonameId}
 				label={`${location.location.name}, ${location.location.adminName1}`}
+				onClick={() => {
+					setActiveIndex(locationIndex);
+				}}
 			>
 				<Box pad="xsmall" align="start">
 					<Text size="medium">{location.forecast.summary}</Text>

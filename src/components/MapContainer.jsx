@@ -88,7 +88,7 @@ export default function MapContainer({ mapCenter, resultLocations, weatherChoice
 				</GoogleMapReact>
 			</Box>
 			<Box style={mapStyle}>
-				<MapList resultLocations={resultLocations} activeIndex={activeIndex} />
+				<MapList resultLocations={resultLocations} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 			</Box>
 		</Box>
 	);
