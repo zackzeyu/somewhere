@@ -1,13 +1,11 @@
 import React from 'react';
-import { Box, Text } from 'grommet';
+import { Text } from 'grommet';
 
 export default function MapIcon({ $hover, locationName, renderIcon, locationIndex, locationId, setActiveIndex }) {
 	const iconStyle = $hover
 		? { size: '50', color: 'rgba(19, 69, 57, 1)', cursor: 'pointer' }
 		: { size: '34', color: 'rgba(19, 69, 57, 1)' };
 	const style = {
-		// backgroundColor: 'rgba(0, 0, 0, 0.3)',
-		// borderRadius: '50%',
 		height: '50px',
 		width: '50px',
 		margin: '-30px'

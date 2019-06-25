@@ -37,7 +37,7 @@ export default function MapContainer({ mapCenter, resultLocations, weatherChoice
 		paddingBottom: 30,
 		backgroundColor: 'rgba(238, 241, 236, 0.9)',
 		borderRadius: 10,
-		overflow: 'scroll'
+		overflow: 'auto'
 	};
 	const mapStyle = { height: '600px', width: '50%', minWidth: '400px' };
 	const zoom = 11;
