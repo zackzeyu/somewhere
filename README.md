@@ -26,8 +26,11 @@ Test drive the application here: [somewhere.zackzhu.com](http://somewhere.zackzh
 #### Server
 > 1. Install dependencies with `yarn` or `npm install`
 > 1. The server launch script is `server/index.js`
-> -- If hosting your own version of `somewhere`, you must provide your own `Dark Sky` API key as an environment variable (`process.env.DARKSKY`)
-> -- The server uses port `5005` by default, but you may set it using an environment variable (`process.env.PORT`)
+> - If hosting your own version of `somewhere`, you must provide your own API keys:
+>   - `Dark Sky` API key as an environment variable (`process.env.DARKSKY`)
+>   - `Google Maps` API key as an environment variable (`process.env.GOOGLE`)
+>   - The Google API key must have access to Google's `Geocoding`, `Maps JavaScript` and `Places` API's
+> - The server uses port `5005` by default, but you may set it using an environment variable (`process.env.PORT`)
 
 #### Client
 > The client side is built using webpack:

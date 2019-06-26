@@ -122,6 +122,9 @@ export default function App2() {
 										type: 'fadeIn',
 										duration: 1000
 									}}
+									margin={{
+										bottom: 'medium'
+									}}
 								>
 									<SearchBar
 										setShowMap={setShowMap}
