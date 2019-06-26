@@ -4,7 +4,8 @@ try {
 	API = require('./api');
 } catch (err) {
 	API = {
-		DARKSKY: process.env.DARKSKY || ''
+		DARKSKY: process.env.DARKSKY || '',
+		GOOGLE: process.env.GOOGLE || ''
 	};
 }
 const tempOptions = {
@@ -83,6 +84,16 @@ const getNearbyCities = async (req, res) => {
 	}
 };
 
+const getGoogleMapsApi = async (req, res) => {
+	if (API.GOOGLE) {
+		res.status(200).send(JSON.stringify(API.GOOGLE));
+	} else {
+		console.log('Google API Key not found');
+		res.status(400).send();
+	}
+};
+
 module.exports = {
-	getNearbyCities
+	getNearbyCities,
+	getGoogleMapsApi
 };

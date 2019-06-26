@@ -27,45 +27,45 @@ export default function SearchBar({
 	const [ locationId, setLocationId ] = useState('');
 	const [ loading, setLoading ] = useState(false);
 
-	const handleSearchClick = () => {
-		let url;
-		if (window.location.hostname !== 'localhost') {
-			url = `http://${window.location.hostname}/search`;
-		} else {
-			url = 'http://localhost:5005/search';
-		}
-		setShowMap(false);
+	const handleSearchClick = async () => {
+		try {
+			let searchUrl;
+			if (window.location.hostname !== 'localhost') {
+				searchUrl = `http://${window.location.hostname}/search`;
+			} else {
+				searchUrl = 'http://localhost:5005/search';
+			}
+			setShowMap(false);
 
-		setLoading(true);
-		geocodeByPlaceId(locationId)
-			.then((results) => getLatLng(results[0]))
-			.then((latLng) => {
-				setMapCenter(latLng);
-				const body = JSON.stringify({
-					tempChoice,
-					weatherChoice,
-					location: latLng
-				});
-				return fetch(url, {
-					method: 'post',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body
-				});
-			})
-			.then((result) => result.json())
-			.then((result) => {
-				setLoading(false);
-				setResultLocations(result);
-				setShowMap(true);
-				return true;
-			})
-			.catch((error) => {
-				setLoading(false);
-				alert('Something went wrong! D:');
-				console.error('Error', error);
+			setLoading(true);
+
+			const geocodeResults = await geocodeByPlaceId(locationId);
+			const latLng = await getLatLng(geocodeResults[0]);
+			setMapCenter(latLng);
+			const body = JSON.stringify({
+				tempChoice,
+				weatherChoice,
+				location: latLng
 			});
+
+			const searchResponse = await fetch(searchUrl, {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body
+			});
+
+			const searchData = await searchResponse.json();
+
+			setLoading(false);
+			setResultLocations(searchData);
+			setShowMap(true);
+		} catch (err) {
+			setLoading(false);
+			alert('Something went wrong! D:');
+			console.error('Error', err);
+		}
 	};
 
 	return (
