@@ -38,7 +38,7 @@ export default function SearchInput({ setLocationId }) {
 				return (
 					<TextInput
 						{...getInputProps()}
-						size="large"
+						size="medium"
 						plain={true}
 						suggestions={suggestionListRef.current}
 						onSelect={handleSelect}

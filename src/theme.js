@@ -39,7 +39,8 @@ const theme = {
 		suggestions: {
 			extend: () => {
 				return {
-					backgroundColor: 'rgba(129, 141, 146, 0.1)',
+					marginTop: 15,
+					backgroundColor: 'none',
 					borderRadius: 5
 				};
 			}
