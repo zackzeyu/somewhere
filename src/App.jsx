@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ParallaxBanner } from 'react-scroll-parallax';
 import layer0 from './assets/layer0.svg';
 import layer1 from './assets/layer1.svg';
-import layer2 from './assets/layer2.svg';
-import layer3 from './assets/layer3.svg';
-import layer4 from './assets/layer4.svg';
-import layer5 from './assets/layer5.svg';
-import layer6 from './assets/layer6.svg';
+import layer2 from './assets/layer2.png';
+import layer3 from './assets/layer3.png';
+import layer4 from './assets/layer4.png';
+import layer5 from './assets/layer5.png';
+import layer6 from './assets/layer6.png';
 import { Grommet, Box, Clock, Image, Text } from 'grommet';
 import Greeting from './components/Greeting';
 import SearchBar from './components/SearchBar';
@@ -28,6 +28,7 @@ export default function App2() {
 		textAlign: 'center'
 	};
 	const [ showMap, setShowMap ] = useState(false);
+	const [ showSearchBar, setShowSearchBar ] = useState(false);
 
 	// Set default map center to NYC
 	const [ mapCenter, setMapCenter ] = useState({
@@ -37,6 +38,38 @@ export default function App2() {
 	const [ tempChoice, setTempChoice ] = useState('warm');
 	const [ weatherChoice, setWeatherChoice ] = useState('sunny');
 	const [ resultLocations, setResultLocations ] = useState([]);
+
+	useEffect(
+		() => {
+			let getGoogleMapsApiUrl;
+			if (window.location.hostname !== 'localhost') {
+				getGoogleMapsApiUrl = `http://${window.location.hostname}/googleapi`;
+			} else {
+				getGoogleMapsApiUrl = `http://localhost:5005/googleapi`;
+			}
+			// Retrieve Google Maps API if it has not yet been loaded and dynamically load Google Maps Script
+			const existingScript = document.getElementById('googleMaps');
+
+			if (!existingScript) {
+				fetch(getGoogleMapsApiUrl)
+					.then((res) => res.json())
+					.then((apiKey) => {
+						const script = document.createElement('script');
+						script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+						script.id = 'googleMaps';
+						document.head.appendChild(script);
+						script.onload = () => {
+							setShowSearchBar(true);
+						};
+					})
+					.catch((err) => {
+						alert('Unable to retrieve Google API key');
+						console.log(err);
+					});
+			}
+		},
+		[ setShowSearchBar ]
+	);
 
 	return (
 		<Grommet theme={theme}>
@@ -83,15 +116,24 @@ export default function App2() {
 							<Text alignSelf="center">it is now... </Text>
 							<Clock alignSelf="center" precision="minutes" type="digital" />
 							<Greeting />
-							<SearchBar
-								setShowMap={setShowMap}
-								setMapCenter={setMapCenter}
-								tempChoice={tempChoice}
-								setTempChoice={setTempChoice}
-								weatherChoice={weatherChoice}
-								setWeatherChoice={setWeatherChoice}
-								setResultLocations={setResultLocations}
-							/>
+							{showSearchBar && (
+								<Box
+									animation={{
+										type: 'fadeIn',
+										duration: 1000
+									}}
+								>
+									<SearchBar
+										setShowMap={setShowMap}
+										setMapCenter={setMapCenter}
+										tempChoice={tempChoice}
+										setTempChoice={setTempChoice}
+										weatherChoice={weatherChoice}
+										setWeatherChoice={setWeatherChoice}
+										setResultLocations={setResultLocations}
+									/>
+								</Box>
+							)}
 						</Box>
 					</Box>
 					{showMap && (

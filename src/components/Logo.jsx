@@ -77,7 +77,7 @@ export default function Logo() {
 				somewhere
 				{/* <sup style={{ fontSize: 8, weight: 'light' }}>beta</sup> */}
 				<span> </span>
-				<TextLoop interval={intervals}>{adjectives.map((word) => <span>{word}</span>)}</TextLoop>
+				<TextLoop interval={intervals}>{adjectives.map((word) => <span key={word}>{word}</span>)}</TextLoop>
 			</Text>
 		</Box>
 	);
