@@ -17,7 +17,6 @@ import Logo from './components/Logo';
 
 export default function App2() {
 	const mainBoxStyle = {
-		zIndex: 100,
 		height: '300px',
 		width: '100%',
 		paddingLeft: 50,
@@ -25,7 +24,8 @@ export default function App2() {
 		paddingTop: 50,
 		paddingBottom: 0,
 		borderRadius: '5px',
-		textAlign: 'center'
+		textAlign: 'center',
+		zIndex: 1000
 	};
 	const [ showMap, setShowMap ] = useState(false);
 	const [ showSearchBar, setShowSearchBar ] = useState(false);
@@ -112,7 +112,7 @@ export default function App2() {
 				>
 					<Logo />
 					<Box direction="column" justify="center" align="center" height="50vh">
-						<Box style={mainBoxStyle}>
+						<Box margin={{ top: 'large' }} pad={{ top: 'medium' }} style={mainBoxStyle}>
 							<Text alignSelf="center">it is now... </Text>
 							<Clock alignSelf="center" precision="minutes" type="digital" />
 							<Greeting />

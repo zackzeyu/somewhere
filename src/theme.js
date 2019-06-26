@@ -2,7 +2,7 @@ const theme = {
 	global: {
 		font: {
 			family: 'Quicksand',
-			size: '14px',
+			size: '12px',
 			height: '20px'
 		},
 		backgroundRepeat: 'no-repeat',

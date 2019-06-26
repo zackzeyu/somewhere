@@ -15,12 +15,12 @@ export default function MapList({ resultLocations, activeIndex, setActiveIndex }
 				}}
 			>
 				<Box pad="xsmall" align="start">
-					<Text size="medium">{location.forecast.summary}</Text>
-					<Text size="medium">
+					<Text size="small">{location.forecast.summary}</Text>
+					<Text size="small">
 						High: {parseFloat(location.forecast.temperatureHigh).toFixed(1)} °F, Low:
 						{parseFloat(location.forecast.temperatureLow).toFixed(1)} °F
 					</Text>
-					<Text size="medium">🌧: {Math.round(location.forecast.precipProbability * 100, 1)}% </Text>
+					<Text size="small">🌧: {Math.round(location.forecast.precipProbability * 100, 1)}% </Text>
 					{wikiLink.length > 0 && <Anchor href={wikiLink[0].name} target="_blank" label="Wikipedia entry" />}
 				</Box>
 			</AccordionPanel>

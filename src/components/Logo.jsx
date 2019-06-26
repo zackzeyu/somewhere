@@ -73,7 +73,7 @@ export default function Logo() {
 		<Box style={style} direction="row" align="center">
 			<Planet size={80} mood="happy" color={color} />
 
-			<Text margin={{ left: 'small' }} weight="bold" size="large" style={logoTextStyle}>
+			<Text margin={{ left: 'small' }} weight="bold" size="medium" style={logoTextStyle}>
 				somewhere
 				{/* <sup style={{ fontSize: 8, weight: 'light' }}>beta</sup> */}
 				<span> </span>

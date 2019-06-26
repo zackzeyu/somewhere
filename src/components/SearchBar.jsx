@@ -72,7 +72,7 @@ export default function SearchBar({
 		<Box direction="row" justify="center" align="center" wrap={true} style={{ zIndex: 100 }}>
 			<Box>
 				<Text
-					size="large"
+					size="medium"
 					margin={{
 						left: 'xsmall',
 						right: 'xsmall'
@@ -87,7 +87,7 @@ export default function SearchBar({
 						width: 90
 					}}
 					plain={true}
-					size="large"
+					size="medium"
 					options={tempOptions}
 					value={tempChoice}
 					onChange={handleTempChoiceChange}
@@ -95,7 +95,7 @@ export default function SearchBar({
 				/>
 			</Box>
 			<Text
-				size="large"
+				size="medium"
 				margin={{
 					left: 'xsmall',
 					right: 'xsmall'
@@ -109,7 +109,7 @@ export default function SearchBar({
 						width: 100
 					}}
 					plain={true}
-					size="large"
+					size="medium"
 					options={weatherOptions}
 					value={weatherChoice}
 					onChange={handleWeatherChoiceChange}
@@ -118,7 +118,7 @@ export default function SearchBar({
 			</Box>
 			<Box>
 				<Text
-					size="large"
+					size="medium"
 					margin={{
 						left: 'xsmall',
 						right: 'xsmall'

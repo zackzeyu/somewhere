@@ -28,8 +28,7 @@ export default function Greeting() {
 				delay: 700,
 				duration: 2000
 			}}
-			pad="small"
-			margin="small"
+			margin={{ bottom: 'small' }}
 			alignSelf="center"
 		>
 			<Box>
